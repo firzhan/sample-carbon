@@ -1,0 +1,8 @@
+<h4>Currently Logged in user: </h4>
+<h4>User roles: </h4>
+<%
+	var userMgt=require('/modules/user-mgt.js').UserMgt;
+	userMgt.init();
+	var user=userMgt.getUser('admin'); //Hardcoded for admin role for the moment
+	print(user.getRoles());
+%>

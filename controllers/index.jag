@@ -1,0 +1,8 @@
+<h1>Carbon Sample</h1>
+
+<div>
+This sample demonstrates the use of Single Sign On to secure a jag file.
+</div>
+<div>
+	Access the secured page <a href='secured'>here</a>. It will attempt to verify the currently logged in user in the session and then display a list of roles.
+</div>
