@@ -17,6 +17,8 @@ Installation
 ============
 Drop the carbon-sample folder into the PRODUCT_HOME/repository/deployment/server/jaggeryapps/ directory.
 
+Navigate to [https://localhost:9443/carbon-sample](https://localhost:9443/carbon-sample)
+
 User 
 =====
 
