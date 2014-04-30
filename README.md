@@ -23,10 +23,11 @@ Installation
 5. Open the PRODUCT_HOME/repository/conf/security/authenticator.xml and enable SSO  ![image some](resources/images/authenticator-xml.png)
 6. Copy the contents of the resources/jar folder to PRODUCT_HOME/repository/components/dropins directory
 7. Copy the contents of the resources/modules directory to PRODUCT_HOME/modules directory
-8. Navigate to the management console: [https://localhost:9443/admin](https://localhost:9443/admin) 
+8. Navigate to the management console: [https://localhost:9443/admin](https://localhost:9443/admin) and login
 9. Drop the carbon-sample folder into the PRODUCT_HOME/repository/deployment/server/jaggeryapps/ directory.
 
-Navigate to [https://localhost:9443/carbon-sample](https://localhost:9443/carbon-sample)
+Navigate to [https://localhost:9443/carbon-sample](https://localhost:9443/carbon-sample).If you have already logged into the management console you will directed to 
+the resource.
 
 User 
 =====
