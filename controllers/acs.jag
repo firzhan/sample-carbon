@@ -1,27 +1,33 @@
 <%
-	/**
-	 * Description: This script recieves 
-	 */
-	print("Successfully processed the SSO SAML request.");
-	var samlResponse=request.getParameter('SAMLResponse');
-	var userMgt=require('/modules/user-mgt.js').UserMgt;
-	var sso=require('sso');
-	var sessionId=session.getId();
-	var loggedInUser;
-	var log=new Log();
+/**
+ * Description: This script recieves
+ */
+var samlResponse = request.getParameter('SAMLResponse');
+var samlRequest = request.getParameter('samlRequest');
+var userMgt = require('/modules/user-mgt.js').UserMgt;
+var sso = require('sso');
+var sessionId = session.getId();
+var loggedInUser;
+var log = new Log();
 
-	var samlRespObj=sso.client.getSamlObject(samlResponse);
+//Determine if it is a response
+if (samlResponse) {
+    var samlRespObj = sso.client.getSamlObject(samlResponse);
+    if (!sso.client.isLogoutResponse(samlRespObj)) {
+        var sessionObj = sso.client.decodeSAMLLoginResponse(samlRespObj, samlResponse, sessionId);
+        loggedInUser = sessionObj.loggedInUser;
+        session.put(userMgt.constants.loggedInUser, loggedInUser);
+        response.sendRedirect('/carbon-sample/resource');
+    } else {
+        log.info('Logout request ');
+        session.invalidate();
+        response.redirect('/carbon-sample/logged-out');
+    }
+} 
 
-	if(!sso.client.isLogoutResponse(samlRespObj)){
-		var sessionObj=sso.client.decodeSAMLLoginResponse(samlRespObj,samlResponse,sessionId);
-		loggedInUser=sessionObj.loggedInUser;
-		session.put(userMgt.constants.loggedInUser,loggedInUser);	
-		response.sendRedirect('/carbon-sample/resource');	
-	}
-	else{
-		session.invalidate();
-		response.redirect('/carbon-sample/logged-out');
-	}
-
-
+if(samlRequest){
+	var index=sso.client.decodeSAMLLogoutRequest(sso.client.getSamlObject(samlRequest));
+	log.info('Logout request recieved for session index : '+index);
+	session.invalidate();
+}
 %>

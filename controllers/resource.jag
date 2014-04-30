@@ -2,6 +2,7 @@
 	print('An awesome resource!');
 	//Check if the user has been logged in
 	var userMgt=require('/modules/user-mgt.js').UserMgt;
+	userMgt.init();
 	var user=userMgt.getLoggedInUser(session);
 	var log=new Log();
 	var data=['1','2','3','4'];
@@ -13,10 +14,11 @@
 	}
 	else{
 		log.info('Logged in user found!');
-		//userMgt.init();
-		//var roles=user.getRoles();
-		//print(roles);
-
+		
+		var roles=user.getRoles();
+		print("User's roles:  ");
+		print(roles);
+		print(" The Data: ");
 		print(data);
 	}
 
