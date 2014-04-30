@@ -1,17 +1,23 @@
 <%
+	print('An awesome resource!');
 	//Check if the user has been logged in
 	var userMgt=require('/modules/user-mgt.js').UserMgt;
 	var user=userMgt.getLoggedInUser(session);
 	var log=new Log();
+	var data=['1','2','3','4'];
+
 
 	if(!user){
 		log.warn('There is no logged in user.Danger! Danger!');
-		response.redirect('/');
+		response.sendRedirect('/carbon-sample');
 	}
 	else{
 		log.info('Logged in user found!');
-		var roles=user.getRoles();
-		print(roles);
+		//userMgt.init();
+		//var roles=user.getRoles();
+		//print(roles);
+
+		print(data);
 	}
 
 %>

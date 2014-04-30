@@ -1,5 +1,7 @@
 <%
-
+	/**
+	 * Description: This script recieves 
+	 */
 	print("Successfully processed the SSO SAML request.");
 	var samlResponse=request.getParameter('SAMLResponse');
 	var userMgt=require('/modules/user-mgt.js').UserMgt;
@@ -13,11 +15,12 @@
 	if(!sso.client.isLogoutResponse(samlRespObj)){
 		var sessionObj=sso.client.decodeSAMLLoginResponse(samlRespObj,samlResponse,sessionId);
 		loggedInUser=sessionObj.loggedInUser;
-		session.put(userMgt.loggedInUser,loggedInUser);		
+		session.put(userMgt.constants.loggedInUser,loggedInUser);	
+		response.sendRedirect('/carbon-sample/resource');	
 	}
 	else{
 		session.invalidate();
-		response.redirect('/logged-out');
+		response.redirect('/carbon-sample/logged-out');
 	}
 
 
