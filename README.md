@@ -15,6 +15,9 @@ This sample comes with a wrapper class which simplifies working with these class
 
 Installation
 ============
+
+1. Start an WSO2 Identity Server instance
+2. Configure a service provider entry in 
 Drop the carbon-sample folder into the PRODUCT_HOME/repository/deployment/server/jaggeryapps/ directory.
 
 Navigate to [https://localhost:9443/carbon-sample](https://localhost:9443/carbon-sample)

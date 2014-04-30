@@ -5,6 +5,10 @@ var UserMgt = {};
 (function() {
     var carbon = require('carbon');
     var userManager;
+    var constants={
+        loggedInUser:'loggedInUser'
+    }
+
 
     var init = function() {
     	var config=require('/configs/carbon-sample.json');
@@ -21,7 +25,11 @@ var UserMgt = {};
      * @return A carbon.user.User object
      */
     var getLoggedInUser=function(session){
-        return createUser('admin');
+        var user=session.get(constants.loggedInUser);
+        if(!user){
+            return null;
+        }
+        return createUser(user);
     };
     /**
      * The function creates an instance of the User class for the provided
@@ -39,4 +47,6 @@ var UserMgt = {};
     UserMgt.init = init;
     UserMgt.getLoggedInUser = getLoggedInUser;
     UserMgt.getUser=getUser;
+
+    UserMgt.constants=constants;
 }());

@@ -1,8 +1,28 @@
 <h1>Carbon Sample</h1>
+<%
+	var sso=require('sso');
+	var ssoConfigs=require('/configs/sso.json');
+	var log=new Log();
+	var sessionId=session.getId();
+	var encodedSAMLAuthRequest = sso.client.getEncodedSAMLAuthRequest(ssoConfigs.serviceProvider);
+	var postUrl=ssoConfigs.idpUrl;
+	var relayState='/carbon-sample';
+	/*var result=get(postUrl,{
+		SAMLRequest:encodedSAMLAuthRequest,
+		RelayState:'/carbon-sample',
+		SSOAuthSessionID:sessionId
+	});*/
 
-<div>
-This sample demonstrates the use of Single Sign On to secure a jag file.
-</div>
-<div>
-	Access the secured page <a href='secured'>here</a>. It will attempt to verify the currently logged in user in the session and then display a list of roles.
-</div>
+%>
+
+<form method='POST' action='<%=postUrl%>'>
+	<p>
+		<input type='hidden' name='SAMLRequest' value='<%= encodedSAMLAuthRequest %>' />
+		<input type='hidden' name='RelayState' value='<%= relayState %>' />
+		<input type='hidden' name='SSOAuthSessionID' value='<%= sessionId %>' />
+		<butto type='submit'>Redirect manually</button> 
+	</p>
+</form>
+<script type='text/javascript'>
+	document.forms[0].submit();
+</script>

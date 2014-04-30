@@ -1,0 +1,17 @@
+<%
+	//Check if the user has been logged in
+	var userMgt=require('/modules/user-mgt.js').UserMgt;
+	var user=userMgt.getLoggedInUser(session);
+	var log=new Log();
+
+	if(!user){
+		log.warn('There is no logged in user.Danger! Danger!');
+		response.redirect('/');
+	}
+	else{
+		log.info('Logged in user found!');
+		var roles=user.getRoles();
+		print(roles);
+	}
+
+%>

@@ -1,0 +1,4 @@
+{
+	"serviceProvider":"carbonSample",
+	"idpUrl":"https://localhost:9448/samlsso"
+}

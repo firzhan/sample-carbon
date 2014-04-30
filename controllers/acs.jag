@@ -1,0 +1,24 @@
+<%
+
+	print("Successfully processed the SSO SAML request.");
+	var samlResponse=request.getParameter('SAMLResponse');
+	var userMgt=require('/modules/user-mgt.js').UserMgt;
+	var sso=require('sso');
+	var sessionId=session.getId();
+	var loggedInUser;
+	var log=new Log();
+
+	var samlRespObj=sso.client.getSamlObject(samlResponse);
+
+	if(!sso.client.isLogoutResponse(samlRespObj)){
+		var sessionObj=sso.client.decodeSAMLLoginResponse(samlRespObj,samlResponse,sessionId);
+		loggedInUser=sessionObj.loggedInUser;
+		session.put(userMgt.loggedInUser,loggedInUser);		
+	}
+	else{
+		session.invalidate();
+		response.redirect('/logged-out');
+	}
+
+
+%>
