@@ -33,8 +33,13 @@ Installation
 8. Copy the carbon-sample folder into the BAM_HOME/repository/deployment/server/jaggeryapps/ directory.
 9. Start the WSO2 BAM server instance by navigating to the BAM_HOME/ and typing sh bin/wso2server.sh
 
-Navigate to [https://localhost:9443/carbon-sample](https://localhost:9443/carbon-sample).If you have already logged into the management console you will directed to 
-the resource.
+
+Trying out the sample
+=====================
+1. Navigate to the management console of the BAM server , using [https://localhost:9443/carbon/admin](https://localhost:9443/carbon/admin)
+2. You will be presented with a SSO login screen (username:admin, password:admin) ![login screen](resources/images/login.png)
+3. After you are logged in, navigate to the sample application: [https://localhost:9443/carbon-sample](https://localhost:9443/carbon-sample)
+4. You will be redirected to the resource page and see the following message; ![resource success](resources/images/resource-success.png)
 
 User 
 =====
