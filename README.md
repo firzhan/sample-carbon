@@ -41,6 +41,22 @@ Trying out the sample
 3. After you are logged in, navigate to the sample application: [https://localhost:9443/carbon-sample](https://localhost:9443/carbon-sample)
 4. You will be redirected to the resource page and see the following message; ![resource success](resources/images/resource-success.png)
 
+How does it work?
+=================
+The sample application has three important files that perform the bulk of the work;
+1. controllers/index.jag
+2. controllers/acs.jag
+3. controllers/resource.jag
+
+###Initiating SSO 
+The index.jag file is responsible for initating a SSO request.If a user is not logged into the management console ,he or she will be prompted to log in.
+
+###Handling SSO
+The acs.jag is reponsible for managing the SSO requests including the login and logout requests.In fact, if we go back to the installation step where we setup the service provided it can be noted that assertion consumer url is set to https://localhost:9443/carbon-sample/acs.The IS server will send all SSO related requests to this controller.
+
+###Securing the resources and listing the roles
+The resource.jag file is responsible for checking the session for a logged in user and then obtaining the roles.
+
 User 
 =====
 
