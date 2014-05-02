@@ -13,24 +13,33 @@ This sample comes with a wrapper class which simplifies working with these class
 
 **Note**:In order to simplify the sample we do not consider multitenancy.
 
+Prerequisites
+=============
+This sample requires the following WSO2 products;
+
+1. WSO2 Identity Server (IS) 4.6.0 [product page](http://wso2.com/products/business-activity-monitor/)
+2. WSO2 Business Activity Monitor (BAM) 2.4.0 [product page](http://wso2.com/products/identity-server/)
+
+
 Installation
 ============
 
-1. Configure the port offset of the WSO2 Identity Server by 5
-2. Start a WSO2 Identity Server instance
-3. Configure a service provider entry in for the service provider 'carbonSample'.More information on this can be obtained from: https://docs.wso2.org/display/IS460/Adding+a+Service+Provider. Your service provider configuration should look like ![image service provider](resources/images/service-provider.png)
-4. Download and install the WSO2 product that you would like your jaggery app to run inside.We will be using the WSO2 BAM server which is available here: http://wso2.com/products/business-activity-monitor/
-5. Open the PRODUCT_HOME/repository/conf/security/authenticator.xml and enable SSO  ![image some](resources/images/authenticator-xml.png)
-6. Copy the contents of the resources/jar folder to PRODUCT_HOME/repository/components/dropins directory
-7. Copy the contents of the resources/modules directory to PRODUCT_HOME/modules directory
-8. Navigate to the management console: [https://localhost:9443/admin](https://localhost:9443/admin) and login
-9. Drop the carbon-sample folder into the PRODUCT_HOME/repository/deployment/server/jaggeryapps/ directory.
+1. In order to run both IS and BAM we will need to run IS with a port offset.This can be done by altering offset value found in the IS_HOME/repository/conf/carbon.xml file.For this example we have changed offset value to 5; ![carbon port offset](resources/images/port-offset.png)
+2. Next start the WSO2 Identity Server instance by navigating to IS_HOME/ and typing sh bin/wso2server.sh
+3. Configure a service provider entry  for the service provider 'carbonSample' from the IS management console.More information on this can be obtained from: https://docs.wso2.org/display/IS460/Adding+a+Service+Provider. Your service provider configuration should look like ![image service provider](resources/images/service-provider.png)
+5. We need to enable SSO for the BAM server.This can be done by navigating to the BAM_HOME/repository/conf/security/authenticator.xml and enabling SSO  ![image some](resources/images/authenticator-xml.png)
+6. Copy the contents of the resources/jar folder to BAM_HOME/repository/components/dropins directory
+7. Copy the contents of the resources/modules directory to BAM_HOME/modules directory
+8. Copy the carbon-sample folder into the BAM_HOME/repository/deployment/server/jaggeryapps/ directory.
+9. Start the WSO2 BAM server instance by navigating to the BAM_HOME/ and typing sh bin/wso2server.sh
 
 Navigate to [https://localhost:9443/carbon-sample](https://localhost:9443/carbon-sample).If you have already logged into the management console you will directed to 
 the resource.
 
 User 
 =====
+
+The User class provides a set of methods to manage user related activities such as obtaining the roles of the user.A complete list of available methods is given below;
 
 **Available Methods**
 
@@ -43,7 +52,7 @@ User
 - updateRoles
 - isAuthorize
 
-The methods most relevant for our goals is the getRoles method.
+We will be using the getRoles method in the sample.
 
 
 
